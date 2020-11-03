@@ -41,9 +41,11 @@ function addNumberListeners() {
             if (display.children[0].id === "result"){
                 display.children[0].remove();
                 display.appendChild(document.createElement("span"));
+                display.lastElementChild.id = "number";
             }
             if(display.lastElementChild.id === "operator") {
                 display.appendChild(document.createElement("span"));
+                display.lastElementChild.id = "number";
             }
             display.lastElementChild.textContent += i;
         });
@@ -54,9 +56,11 @@ function addOperatorListeners() {
     const op = ["plus", "minus", "multiply", "divide"];
     for (let i in op){
         document.getElementById(`${op[i]}`).addEventListener("click", function() {
-            if(display.lastElementChild.id !== "operator" && display.lastElementChild.textContent !== "") {
+            if (display.lastElementChild.id !== "operator" && display.lastElementChild.textContent !== "") {
                 display.appendChild(document.createElement("span"));
                 display.lastElementChild.id = "operator";
+                display.lastElementChild.textContent = `${operators[op[i]]}`;
+            } else if (display.lastElementChild.id === "operator") {
                 display.lastElementChild.textContent = `${operators[op[i]]}`;
             }
         });

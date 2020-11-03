@@ -1,11 +1,11 @@
-#numbers {
+#buttons-div {
     display: grid;
     grid-template-columns: repeat(4, 52px);
     grid-template-rows: repeat(4, 52px);    
     gap: 8px;
 }
 
-#numbers button, #operators button {
+#buttons-div button, #operators button {
     padding: 10px;
     border-radius: 5px;
     border: 1px solid rgb(201, 201, 201);
@@ -16,8 +16,9 @@
     height: 70px;
     width: 214px;
     display: flex;
+    flex-wrap: wrap;
     justify-content: flex-end;
-    align-items: center;
+    align-content: center;
     background-color:  rgb(241, 241, 241);
     border: 1px solid rgb(201, 201, 201);
     padding: 4px 8px;
