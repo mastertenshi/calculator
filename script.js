@@ -32,14 +32,14 @@ function operate(operator, a, b) {
         "/": divide
     };
 
-    return calc[operator] (a, b);
+    return calc[operator](a, b);
 }
 
 function addNumberListeners() {
     for (let i = 0; i < 10; i++) {
         document.getElementById(`${i}`).addEventListener("click", function() {
-            if (display.children[0].id === "result"){
-                display.children[0].remove();
+            if (display.firstElementChild.id === "result"){
+                display.firstElementChild.remove();
                 display.appendChild(document.createElement("span"));
                 display.lastElementChild.id = "number";
             }
@@ -47,7 +47,8 @@ function addNumberListeners() {
                 display.appendChild(document.createElement("span"));
                 display.lastElementChild.id = "number";
             }
-            display.lastElementChild.textContent += i;
+            if(display.lastElementChild.textContent.length < 16)
+                display.lastElementChild.textContent += i;
         });
     }
 }
@@ -57,6 +58,9 @@ function addOperatorListeners() {
     for (let i in op){
         document.getElementById(`${op[i]}`).addEventListener("click", function() {
             if (display.lastElementChild.id !== "operator" && display.lastElementChild.textContent !== "") {
+                
+                calculate();
+
                 display.appendChild(document.createElement("span"));
                 display.lastElementChild.id = "operator";
                 display.lastElementChild.textContent = `${operators[op[i]]}`;
@@ -74,6 +78,29 @@ function addClearListener() {
     });
 }
 
+function calculate() {
+    if (display.children.length > 2) {
+        const num1 = parseFloat(display.children[0].textContent);
+        const num2 = parseFloat(display.children[2].textContent);
+        const operator = display.children[1].textContent;
+
+        display.lastElementChild.remove();
+        display.lastElementChild.remove();
+
+        let result = operate(operator, num1, num2);
+
+        if (!(Number.isInteger(result))) {
+            result = result.toFixed(3);
+        }
+
+        display.firstElementChild.textContent = result
+    }
+}
+
+function addEqualsListener() {
+    document.getElementById("equals").addEventListener("click", calculate);
+}
+
 function removeChildren() {
     for(let i = display.children.length - 1; i > 0; i--) {
         display.children[i].remove();
@@ -87,4 +114,6 @@ addNumberListeners();
 addClearListener();
 
 addOperatorListeners();
+
+addEqualsListener();
 

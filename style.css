@@ -1,15 +1,29 @@
-#buttons-div {
+.buttons-div {
     display: grid;
     grid-template-columns: repeat(4, 52px);
     grid-template-rows: repeat(4, 52px);    
     gap: 8px;
+    margin-bottom: 10px;
 }
 
-#buttons-div button, #operators button {
+
+.buttons-div button {
     padding: 10px;
     border-radius: 5px;
     border: 1px solid rgb(201, 201, 201);
     background-color: rgb(247, 247, 247);
+    font-size: 17px;
+}
+
+#clear {
+    background-color: rgb(255, 82, 82);
+    border: 1px solid rgb(216, 59, 59);
+}
+
+#equals, #plus, #minus, #multiply, #divide {
+    background-color: rgb(99, 99, 99);
+    border: 1px solid rgb(77, 77, 77);
+    color: white;
 }
 
 #display {
@@ -19,10 +33,12 @@
     flex-wrap: wrap;
     justify-content: flex-end;
     align-content: center;
-    background-color:  rgb(241, 241, 241);
+    background-color:  rgb(248, 248, 248);
     border: 1px solid rgb(201, 201, 201);
+    border-radius: 5px;
     padding: 4px 8px;
     margin: 10px 0;
+    font-size: 20px;
 }
 
 #display span {
@@ -32,4 +48,13 @@
 #calculator {
     display: grid;
     justify-content: center;
+    border: 1px solid rgb(179, 179, 179);
+    border-radius: 5px;
+    width: 250px;
+    margin: 100px auto;
+    background-color: rgb(216, 216, 216);
+}
+
+body {
+    background-color: rgb(255, 255, 255);
 }
